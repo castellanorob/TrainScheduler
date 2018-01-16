@@ -5,11 +5,31 @@
     margin-left: 40px;
     margin-bottom: 40px;
     border-radius: 20px;
+    background-color: #fc8c4b;
 }
 
 .card {
     margin: 40px;
-    border: 10px;
-    border-color: black;
+    border: 20px;
+    border-color: #f2ae41;
     border-radius: 20px;
+}
+
+.trainform {
+    border: 20px;
+    border-color: black;
+}
+
+.card-header {
+    border-radius: 20px;
+    background-color: #f2ae41;
+}
+
+.btn-primary {
+    border-color: #ce5039;
+    background-color: #ce5039;
+}
+
+.tableheader {
+    font-weight: bold;
 }
