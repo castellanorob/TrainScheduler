@@ -19,6 +19,9 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" 
     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
+    <!-- Link to Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
     <!-- Link to Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
 
@@ -45,12 +48,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr id="full-schedule">
                                     <th scope="row" id="trainName-display"></th>
                                     <td id="destination-display"></td>
                                     <td id="frequency-display"></td>
                                     <td id="nextArrival-display"></td>
                                     <td id="minutesAway-display"></td>
+                                </tr>
                                 </tbody>
                         </table>
                 </div>

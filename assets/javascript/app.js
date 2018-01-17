@@ -14,7 +14,7 @@ var config = {
   // Initial Values
   var trainName = "";
   var destination = "";
-  var firstTrainTime = "";
+  var firstTrainTime = moment("", "HH:mm");
   var frequency = "";
 
 
@@ -36,7 +36,28 @@ var config = {
       });
   });
 
-  // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
+  // Appending previous train schedule objects
+
+  database.ref().on("child_added", function(childSnapshot) {
+    
+        $("#full-schedule").append("<div class='well'><span id='trainName'> " + childSnapshot.val().Train +
+        " </span><span id='Destination'> " + childSnapshot.val().destination +
+        //" </span><span id=''First Train Time''> " + childSnapshot.val().firstTrainTime +
+        " </span><span id='Frequency'> " + childSnapshot.val().frequency + " </span></div>");
+    
+        console.log(childSnapshot.val());
+
+        console.log(moment(firstTrainTime).format("h:mm A"));
+    
+      });
+
+  //Moment.js function converting first train time from military time to AM or PM
+  //var someTime = moment(childSnapshot.val().firstTrainTime, "HH:mm");
+  
+  //console.log(moment(someTime).format("h:mm A"));
+    //console.log(moment().fromNow(true));
+
+  // Firebase watcher + initial loader + order/limit 
   database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
       console.log(snapshot.val());
     // storing the snapshot.val() in a variable for convenience
@@ -48,4 +69,6 @@ var config = {
       $("#frequency-display").text(sv.Frequency);
     //   $("#nextArrival-display").text(sv.nextArrival);
     //   $("#minutesAway-display").text()
-  })
+  });
+
+    
