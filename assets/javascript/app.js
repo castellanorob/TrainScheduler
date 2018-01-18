@@ -17,7 +17,6 @@ var config = {
   var firstTrainTime = moment("", "HH:mm");
   var frequency = "";
 
-
   // Capture Button Click
   $("#add-train").on("click", function(event) {
       event.preventDefault();
@@ -31,7 +30,7 @@ var config = {
       database.ref().push({
           Train: trainName,
           Destination: destination,
-          "First Train Time": firstTrainTime,
+          Time: firstTrainTime,
           Frequency: frequency
       });
   });
@@ -40,20 +39,21 @@ var config = {
 
   database.ref().on("child_added", function(childSnapshot) {
     
-        $("#full-schedule").append("<div class='well'><span id='trainName'> " + childSnapshot.val().Train +
-        " </span><span id='Destination'> " + childSnapshot.val().destination +
-        //" </span><span id=''First Train Time''> " + childSnapshot.val().firstTrainTime +
-        " </span><span id='Frequency'> " + childSnapshot.val().frequency + " </span></div>");
+        $("#trainschedule > tbody").append("<tr><td>" + childSnapshot.val().Train +
+        "</td><td>" + childSnapshot.val().Destination +
+        "</td><td>" + childSnapshot.val().Time +
+        "</td><td>" + childSnapshot.val().Frequency + "</td></tr>");
     
         console.log(childSnapshot.val());
 
-        console.log(moment(firstTrainTime).format("h:mm A"));
+        
     
       });
 
   //Moment.js function converting first train time from military time to AM or PM
   //var someTime = moment(childSnapshot.val().firstTrainTime, "HH:mm");
-  
+
+  console.log(moment(firstTrainTime).format("h:mm A"));
   //console.log(moment(someTime).format("h:mm A"));
     //console.log(moment().fromNow(true));
 
@@ -63,10 +63,10 @@ var config = {
     // storing the snapshot.val() in a variable for convenience
     var sv = snapshot.val();
 
-    // Change the HTML to reflect
-      $("#trainName-display").text(sv.Train);
-      $("#destination-display").text(sv.Destination);
-      $("#frequency-display").text(sv.Frequency);
+    // // Change the HTML to reflect
+    //   $("#trainName-display").text(sv.Train);
+    //   $("#destination-display").text(sv.Destination);
+    //   $("#frequency-display").text(sv.Frequency);
     //   $("#nextArrival-display").text(sv.nextArrival);
     //   $("#minutesAway-display").text()
   });
